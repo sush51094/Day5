@@ -17,6 +17,9 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     @IBOutlet weak var picker: UIPickerView!
     
     let countrylist = ["India","Australia","America","canada","qatar","france","germany","Newzeland","Japan","china"]
+    
+    
+    let citylist = ["paris","florida","toronto","la","lasvegas","hyderabad","delhi","bangalore","ottawa"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,30 +48,60 @@ class ViewController: UIViewController,UIPickerViewDataSource,UIPickerViewDelega
     
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
+        return 2
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         
-      return self.countrylist.count
+        if component == 0{
+            return self.countrylist.count
+        }
         
+        else if component == 1{
+            
+            return self.countrylist.count
+        }
         
-    }
+        return 0
+                    
+            
+           }
+        
     
-    
+
+
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
        // return "Comp: \(component)-Row :\(row)"
+       
         
+        if component == 0{
         return self.countrylist[row]
+        
+        
+    }
+        
+        
+        return self.citylist[row]
     }
     
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
+        
+        
+        self.label.text = "Country: \(self.countrylist[self.picker.selectedRow(inComponent: 0)]),City: \(self.citylist[self.picker.selectedRow(inComponent: 1)])"
+        
     }
-    
-    
 }
+
+
+        
+
+    
+    
+    
+    
+
 
